@@ -11,7 +11,7 @@ cursor_obj=conn_obj.cursor(dictionary=True)
 app=FastAPI()
 
 
-cursor.execute("""
+cursor_obj.execute("""
 CREATE TABLE IF NOT EXISTS expenses(
     expense_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS expenses(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 """)
-conn.commit()
+conn_obj.commit()
 
 
 @app.post("/add_expense")
