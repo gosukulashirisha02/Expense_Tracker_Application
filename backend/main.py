@@ -21,7 +21,7 @@ conn_obj = mysql.connector.connect(
     password=os.getenv("db_password"),
     database=os.getenv("db_name"),
     port=int(os.getenv("db_port")),
-    ssl_disabled=False
+    ssl_disabled=True
 )
 cursor_obj=conn_obj.cursor(dictionary=True)
 
