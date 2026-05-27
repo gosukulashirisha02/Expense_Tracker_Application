@@ -4,9 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 app=FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "API running"}
 
 
 # -------------------- CORS POLICY --------------------
@@ -19,23 +16,13 @@ app.add_middleware(
     allow_headers=["*"]    # Allow all headers
 )
 
-try:
-    conn_obj = mysql.connector.connect(
-        host=os.getenv("db_host"),
-        user=os.getenv("db_user"),
-        password=os.getenv("db_password"),
-        database=os.getenv("db_name"),
-        port=int(os.getenv("db_port")),
-        ssl_disabled=True
-    )
-
-    cursor_obj = conn_obj.cursor(dictionary=True)
-
-    print("DATABASE CONNECTED SUCCESSFULLY")
-
-except Exception as e:
-    print("DATABASE CONNECTION FAILED")
-    print(e)
+conn_obj = mysql.connector.connect(
+    host=os.getenv("db_host"),
+    port=int(os.getenv("db_port")),
+    user=os.getenv("db_user"),
+    password=os.getenv("db_password"),
+    database=os.getenv("db_name")
+)
 cursor_obj=conn_obj.cursor(dictionary=True)
 
 
