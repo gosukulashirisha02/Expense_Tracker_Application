@@ -4,6 +4,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 app=FastAPI()
 
+@app.get("/")
+def home():
+    return {"message": "API running"}
+
 
 # -------------------- CORS POLICY --------------------
 
