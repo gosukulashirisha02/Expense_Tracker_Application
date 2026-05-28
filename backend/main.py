@@ -17,14 +17,13 @@ app.add_middleware(
 )
 
 conn_obj = mysql.connector.connect(
-    host=os.getenv("db_host"),
-    port=int(os.getenv("db_port")),
-    user=os.getenv("db_user"),
-    password=os.getenv("db_password"),
-    database=os.getenv("db_name"),
-    ssl_verify_cert=False,
-    ssl_disabled=False
-)
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT",3306)),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME"),
+
+)   
 cursor_obj=conn_obj.cursor(dictionary=True)
 
 
